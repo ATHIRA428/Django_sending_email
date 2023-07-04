@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for p in post %}
+    <div class="post">
+      <h3>{{ p.user }}</h3>
+      <p>{{ p.caption }}</p>
+      <img src="{{ p.image_or_video_content.url }}" alt="Post Image">
+      {% comment %} <div class="likes-section">
+        <form method="POST" action="{% url 'toggle_like' post_id=p.pk %}">
+          {% csrf_token %}
+          {% if p.is_liked %}
+            <button type="submit" name="like_status" value="unlike">Unlike</button>
+          {% else %}
+            <button type="submit" name="like_status" value="like">Like</button>
+          {% endif %}
+        </form>
+        <p>{{ p.likes.count }} likes</p>
+      </div> {% endcomment %}
+
+      <div class="comments-section">
+        {% for comment in p.comments.all %}
+          <div class="comment">
+            <p>{{ comment.user }}: {{ comment.text }}</p>
+          </div>
+        {% empty %}
+          <p>No comments yet.</p>
+        {% endfor %}
+      </div>
+
+      <div class="add-comment-section">
+        <form method="POST" action="{% url 'add_comment' post_id=p.pk %}">
+          {% csrf_token %}
+          <input type="text" name="text" placeholder="Add a comment">
+          <button type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+
+{% block content %}
+  {% for p in post %}
+    <div class="post">
+      <h3>{{ p.user }}</h3>
+      <p>{{ p.caption }}</p>
+      <img src="{{ p.image_or_video_content.url }}" alt="Post Image">
+      <div class="likes-section">
+        <p>{{ p.like_set.count }} likes</p>
+        <button class="like-button">Like</button>
+      </div>
+
+      <div class="comments-section">
+        {% for comment in p.comment_set.all %}
+          <div class="comment">
+            <p>{{ comment.user }}: {{ comment.text }}</p>
+          </div>
+        {% empty %}
+          <p>No comments yet.</p>
+        {% endfor %}
+      </div>
+
+      <div class="add-comment-section">
+        <form method="POST" action="{% url 'add_comment' post_id=p.post_id %}">
+          {% csrf_token %}
+          <input type="text" name="text" placeholder="Add a comment">
+          <button type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %} {% endcomment %}
