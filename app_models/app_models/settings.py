@@ -139,9 +139,9 @@ MEDIA_URL='/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'  
+EMAIL_HOST = 'demo'  
 EMAIL_PORT = 2525  
-EMAIL_HOST_USER = 'e0bb625cb52025'  
-EMAIL_HOST_PASSWORD = 'ffa86443beced6'  
+EMAIL_HOST_USER = 'user'  
+EMAIL_HOST_PASSWORD = 'password'  
 EMAIL_USE_TLS = True  
 EMAIL_USE_SSL = False  
